@@ -1,0 +1,35 @@
+[versions]
+# kotlin
+kotlinVer = "1.9.22"
+springVer = "3.2.1"
+
+# project reactor
+reactorBomVer = "2023.0.1"
+
+owaspDependencyCheckVersion = "9.0.9"
+
+[libraries]
+# kotlin
+reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlinVer" }
+stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinVer" }
+stdlibCommon = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlinVer" }
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVer" }
+kotlinSpringPlugin = { module = "org.jetbrains.kotlin:kotlin-allopen", version.ref = "kotlinVer" }
+owaspDependencyLib = { module = "org.owasp:dependency-check-gradle", version.ref = "owaspDependencyCheckVersion" }
+# spring
+springBootDependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springVer" }
+springBootGradlePlugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springVer" }
+springBootStarter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springVer" }
+springBootTest = { module = "org.springframework.boot:spring-boot-test", version.ref = "springVer" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springVer" }
+springBootStarterWebflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springVer" }
+
+# project reactor
+reactorBom = { module = "io.projectreactor:reactor-bom", version.ref = "reactorBomVer" }
+reactorCore = { module = "io.projectreactor:reactor-core" }
+reactorTools = { module = "io.projectreactor:reactor-tools" }
+reactorKotlinExtensions = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions" }
+reactorExtra = { module = "io.projectreactor.addons:reactor-extra" }
+reactorTest = { module = "io.projectreactor:reactor-test" }
+
+[plugins]

@@ -1,11 +1,12 @@
-package com.testnet.claimer
+package claimer.app
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ClaimerApplication
+class App
 
 fun main(args: Array<String>) {
-	runApplication<ClaimerApplication>(*args)
+    println("hello")
+    runApplication<App>(*args)
 }
