@@ -15,6 +15,7 @@ dependencies {
     implementation(libraries.springBootDependencies)
     implementation(libraries.springBootStarterWebflux)
     implementation(libraries.springBootStarter)
+    implementation(libraries.springBootStarterSecurity)
     implementation(libraries.reactorKotlinExtensions)
     implementation(platform(libraries.reactorBom))
     implementation(libraries.reactorCore)

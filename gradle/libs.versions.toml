@@ -1,12 +1,15 @@
 [versions]
 # kotlin
 kotlinVer = "1.9.22"
-springVer = "3.2.1"
-
+springBootVer = "3.2.1"
+discord = "3.3.0-RC1"
 # project reactor
 reactorBomVer = "2023.0.1"
 
-owaspDependencyCheckVersion = "9.0.9"
+owaspDependencyCheckVer = "9.0.9"
+gsonVer = "2.10"
+simpleJavaApiWrapperVer = "2.2"
+kordVer = "0.13.1"
 
 [libraries]
 # kotlin
@@ -15,14 +18,17 @@ stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinV
 stdlibCommon = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlinVer" }
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVer" }
 kotlinSpringPlugin = { module = "org.jetbrains.kotlin:kotlin-allopen", version.ref = "kotlinVer" }
-owaspDependencyLib = { module = "org.owasp:dependency-check-gradle", version.ref = "owaspDependencyCheckVersion" }
+owaspDependencyLib = { module = "org.owasp:dependency-check-gradle", version.ref = "owaspDependencyCheckVer" }
+discordLib = { module = "com.discord4j:discord4j-core", version.ref = "discord" }
 # spring
-springBootDependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springVer" }
-springBootGradlePlugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springVer" }
-springBootStarter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springVer" }
-springBootTest = { module = "org.springframework.boot:spring-boot-test", version.ref = "springVer" }
-springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springVer" }
-springBootStarterWebflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springVer" }
+springBootDependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBootVer" }
+springBootGradlePlugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springBootVer" }
+springBootStarter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBootVer" }
+springBootTest = { module = "org.springframework.boot:spring-boot-test", version.ref = "springBootVer" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBootVer" }
+springBootStarterWebflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springBootVer" }
+springBootStarterSecurity = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "springBootVer" }
+springBootOAuth2 = { module = "org.springframework.boot:spring-boot-starter-oauth2-client", version.ref = "springBootVer" }
 
 # project reactor
 reactorBom = { module = "io.projectreactor:reactor-bom", version.ref = "reactorBomVer" }
@@ -31,5 +37,15 @@ reactorTools = { module = "io.projectreactor:reactor-tools" }
 reactorKotlinExtensions = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions" }
 reactorExtra = { module = "io.projectreactor.addons:reactor-extra" }
 reactorTest = { module = "io.projectreactor:reactor-test" }
+
+# other
+gsonLib = { module = "com.google.code.gson:gson", version.ref = "gsonVer" }
+simpleJavaApiWrapperLib = { module = "dev.mayuna:simple-java-api-wrapper", version.ref = "simpleJavaApiWrapperVer" }
+
+# kord
+kordCommonLib = { module = "dev.kord:kord-common", version.ref = "kordVer" }
+kordCoreLib = { module = "dev.kord:kord-core", version.ref = "kordVer" }
+kordRestLib = { module = "dev.kord:kord-rest", version.ref = "kordVer" }
+kordGatewayLib = { module = "dev.kord:kord-gateway", version.ref = "kordVer" }
 
 [plugins]
