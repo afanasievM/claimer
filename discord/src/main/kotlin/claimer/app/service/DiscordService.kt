@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono
 
 
 @Service
-class DiscordService(val webClient: WebClient) {
+class DiscordService(private val webClient: WebClient) {
 
     @Value("\${discord.user.token}")
     lateinit var token: String

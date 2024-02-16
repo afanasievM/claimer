@@ -10,6 +10,7 @@ owaspDependencyCheckVer = "9.0.9"
 gsonVer = "2.10"
 simpleJavaApiWrapperVer = "2.2"
 kordVer = "0.13.1"
+maverickSynergyVer = "3.0.11"
 
 [libraries]
 # kotlin
@@ -47,5 +48,8 @@ kordCommonLib = { module = "dev.kord:kord-common", version.ref = "kordVer" }
 kordCoreLib = { module = "dev.kord:kord-core", version.ref = "kordVer" }
 kordRestLib = { module = "dev.kord:kord-rest", version.ref = "kordVer" }
 kordGatewayLib = { module = "dev.kord:kord-gateway", version.ref = "kordVer" }
+
+# SSH
+maverickSynergyLib = { module = "com.sshtools:maverick-synergy-client", version.ref = "maverickSynergyVer" }
 
 [plugins]

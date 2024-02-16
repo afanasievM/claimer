@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     implementation(project(":discord"))
+    implementation(project(":penumbra"))
 }
 
 application {

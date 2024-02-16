@@ -3,8 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.gsonLib)
-    implementation(libs.simpleJavaApiWrapperLib)
-    implementation(libs.springBootOAuth2)
-    implementation(libs.springBootStarterSecurity)
+    implementation(project(":discord"))
+    implementation(project(":common"))
+    implementation(project(":ssh-client"))
 }
