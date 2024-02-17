@@ -1,23 +1,16 @@
-version: '3.9'
-
+version: '3.8'
 services:
   app:
-    image: 'app'
-    build:
-      context: ./
-      dockerfile: ./Dockerfile
+    image: myafo/claimer
     restart: on-failure
     container_name: 'app'
     depends_on:
       - mongodb
-      - redis
-      - nats
-      - kafka-ui
     environment:
       SPRING.DATA.MONGODB.HOST: mongodb
 
   mongodb:
-    image: mongo
+    image: mongo:latest
     restart: always
     ports:
       - 27017:27017
@@ -26,3 +19,11 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 1111
     volumes:
       - ./data:/mongodata
+      -
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
+    restart: unless-stopped
