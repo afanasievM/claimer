@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: myafo/claimer
+    image: myafo/claimer:main
     restart: on-failure
     container_name: 'app'
     depends_on:
@@ -19,7 +19,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 1111
     volumes:
       - ./data:/mongodata
-      -
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
