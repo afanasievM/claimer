@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  app:
+    image: 'app'
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: on-failure
+    container_name: 'app'
+    depends_on:
+      - mongodb
+      - redis
+      - nats
+      - kafka-ui
+    environment:
+      SPRING.DATA.MONGODB.HOST: mongodb
+
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 1111
+    volumes:
+      - ./data:/mongodata

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class Runner(private val claimer: PenumbraClaimer, private val sshService: PenumbraSshService) {
 
-    @Scheduled(cron = "CRON_EXPRESSION")
+    @Scheduled(cron = CRON_EXPRESSION)
     fun run() {
         LOG.info("Started Penumbra job")
         claimer.claim()
@@ -21,6 +21,6 @@ class Runner(private val claimer: PenumbraClaimer, private val sshService: Penum
 
     companion object {
         private val LOG = LoggerFactory.getLogger(Companion::class.java)
-        private val CRON_EXPRESSION = "0 0 21 * * *"
+        private const val CRON_EXPRESSION = "0 0 21 * * *"
     }
 }

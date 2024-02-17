@@ -1,3 +1,3 @@
 plugins {
-    id("claimer.kotlin-application-conventions")
+    id("claimer.kotlin-library-conventions")
 }
