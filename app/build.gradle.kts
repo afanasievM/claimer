@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation(project(":penumbra"))
+    implementation(project(":berachain"))
 }
 val mainClassName = "claimer.app.AppKt"
 

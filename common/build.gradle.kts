@@ -5,4 +5,5 @@ plugins {
 dependencies {
     implementation(libs.gsonLib)
     implementation(libs.maverickSynergyLib)
+    implementation(libs.twoCapchaLib)
 }

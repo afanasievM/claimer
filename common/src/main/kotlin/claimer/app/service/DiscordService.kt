@@ -1,8 +1,7 @@
 package claimer.app.service
 
-import claimer.app.dto.SendMessageRequest
+import claimer.app.dto.SendMessageDiscordRequest
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Value
 
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.BodyInserters
@@ -19,7 +18,7 @@ class DiscordService(private val webClient: WebClient) {
         return webClient.post()
             .uri(String.format(DISCORD_SEND_MESSAGE_URL, channelId))
             .headers { it.add(AUTHORIZATION_HEADER_KEY, token) }
-            .body(BodyInserters.fromValue(SendMessageRequest(message)))
+            .body(BodyInserters.fromValue(SendMessageDiscordRequest(message)))
             .retrieve()
             .bodyToMono<String>()
             .doOnError { LOG.error("Error during sending message to discord channel id=$channelId \n${it.message}") }

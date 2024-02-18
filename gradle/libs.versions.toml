@@ -11,6 +11,8 @@ gsonVer = "2.10"
 simpleJavaApiWrapperVer = "2.2"
 kordVer = "0.13.1"
 maverickSynergyVer = "3.0.11"
+twoCapchaVer = "1.1.1"
+kotlinJacksonVer = "2.16.1"
 
 [libraries]
 # kotlin
@@ -19,6 +21,7 @@ stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinV
 stdlibCommon = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlinVer" }
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVer" }
 kotlinSpringPlugin = { module = "org.jetbrains.kotlin:kotlin-allopen", version.ref = "kotlinVer" }
+kotlinJacksonLib = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "kotlinJacksonVer" }
 owaspDependencyLib = { module = "org.owasp:dependency-check-gradle", version.ref = "owaspDependencyCheckVer" }
 discordLib = { module = "com.discord4j:discord4j-core", version.ref = "discord" }
 # spring
@@ -52,5 +55,7 @@ kordGatewayLib = { module = "dev.kord:kord-gateway", version.ref = "kordVer" }
 
 # SSH
 maverickSynergyLib = { module = "com.sshtools:maverick-synergy-client", version.ref = "maverickSynergyVer" }
+# Capcha
+twoCapchaLib = { module = "com.github.2captcha:2captcha-java", version.ref = "twoCapchaVer" }
 
 [plugins]

@@ -14,15 +14,16 @@ class Runner(private val claimer: PenumbraClaimer,
              private val mongoService: PenumbraMongoService
 ) {
 
-    @Scheduled(cron = CRON_EXPRESSION)
+//    @Scheduled(cron = CRON_EXPRESSION)
+    @Scheduled(initialDelay = 0)
     fun run() {
         LOG.info("Started Penumbra job")
 
         mongoService.findAll()
             .filter { it.isActive }
-            .flatMap { claimer.claim(it) }
-            .delayElements(Duration.ofSeconds(120))
-            .flatMap { sshService.runSshCommand(it) }
+//            .flatMap { claimer.claim(it) }
+//            .delayElements(Duration.ofSeconds(120))
+//            .flatMap { sshService.runSshCommand(it) }
             .subscribe { LOG.info("Job successfully finished!") }
     }
 

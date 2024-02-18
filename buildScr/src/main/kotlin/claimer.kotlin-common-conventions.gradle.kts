@@ -15,6 +15,7 @@ dependencies {
     implementation(libraries.reflect)
     implementation(libraries.stdlib)
     implementation(libraries.stdlibCommon)
+    implementation(libraries.kotlinJacksonLib)
 }
 
 tasks {
