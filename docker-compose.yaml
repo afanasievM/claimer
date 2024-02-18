@@ -21,7 +21,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: 1111
     volumes:
-      - ./data:/mongodata
+      - ~/claimerMongo:/data/db
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
