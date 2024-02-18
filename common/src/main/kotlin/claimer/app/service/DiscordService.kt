@@ -1,7 +1,6 @@
 package claimer.app.service
 
 import claimer.app.dto.SendMessageRequest
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 
@@ -15,10 +14,8 @@ import reactor.core.publisher.Mono
 @Service
 class DiscordService(private val webClient: WebClient) {
 
-    @Value("\${discord.user.token}")
-    lateinit var token: String
 
-    fun sendMessageToChannel(channelId: String, message: String): Mono<String> {
+    fun sendMessageToChannel(channelId: String, token: String, message: String): Mono<String> {
         return webClient.post()
             .uri(String.format(DISCORD_SEND_MESSAGE_URL, channelId))
             .headers { it.add(AUTHORIZATION_HEADER_KEY, token) }

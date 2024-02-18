@@ -8,4 +8,4 @@ plugins {
 }
 
 rootProject.name = "claimer"
-include("app", "discord", "penumbra", "common", "ssh-client")
+include("app", "penumbra", "common")

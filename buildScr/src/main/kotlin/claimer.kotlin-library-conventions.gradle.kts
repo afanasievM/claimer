@@ -16,6 +16,8 @@ dependencies {
     implementation(libraries.springBootStarterWebflux)
     implementation(libraries.springBootStarter)
     implementation(libraries.springBootStarterSecurity)
+    implementation(libraries.springBootDataJpa)
+    implementation(libraries.springBootMongo)
     implementation(libraries.reactorKotlinExtensions)
     implementation(platform(libraries.reactorBom))
     implementation(libraries.reactorCore)

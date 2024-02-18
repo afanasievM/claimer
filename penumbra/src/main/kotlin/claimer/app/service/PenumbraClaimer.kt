@@ -1,21 +1,17 @@
 package claimer.app.service
 
-import org.springframework.beans.factory.annotation.Value
+import claimer.app.entity.Penumbra
 
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 
 @Service
-class PenumbraClaimer(private val discordService: DiscordService): Claimer {
+class PenumbraClaimer(private val discordService: DiscordService) {
 
-    @Value("\${penumbra.wallet.address}")
-    private lateinit var walletAddress: String
-
-    @Value("\${penumbra.discord.channel.id}")
-    private lateinit var channelId: String
-
-    override fun claim(): Mono<Unit> {
-        return discordService.sendMessageToChannel(channelId, walletAddress).thenReturn(Unit)
+    fun claim(penumbra: Penumbra): Mono<Penumbra> {
+        return discordService
+            .sendMessageToChannel(penumbra.discordChannelId, penumbra.discordUserToken, penumbra.wallet)
+            .thenReturn(penumbra)
     }
 }

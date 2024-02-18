@@ -3,7 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":discord"))
     implementation(project(":penumbra"))
 }
 val mainClassName = "claimer.app.AppKt"
