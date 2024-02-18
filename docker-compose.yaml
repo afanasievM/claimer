@@ -8,6 +8,7 @@ services:
       - mongodb
     environment:
       SPRING.DATA.MONGODB.HOST: mongodb
+      SPRING.DATA.MONGODB.PORT: 27017
       SPRING.DATA.MONGODB.DATABASE: claimer
       SPRING.DATA.MONGODB.USERNAME: admin
       SPRING.DATA.MONGODB.PASSWORD: 1111
