@@ -10,9 +10,9 @@ services:
       SPRING.DATA.MONGODB.HOST: mongodb
       SPRING.DATA.MONGODB.PORT: 27017
       SPRING.DATA.MONGODB.DATABASE: claimer
-      SPRING.DATA.MONGODB.USERNAME: admin
+      SPRING.DATA.MONGODB.USERNAME: user
       SPRING.DATA.MONGODB.PASSWORD: 1111
-      SPRING.DATA.MONGODB.AUTHENTICATION-DATABESE: admin
+      spring.data.mongodb.authentication-database: admin
 
   mongodb:
     image: mongo:latest
@@ -20,7 +20,7 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_USERNAME: tester
       MONGO_INITDB_ROOT_PASSWORD: 1111
     volumes:
       - ~/claimerMongo:/data/db
