@@ -12,6 +12,7 @@ services:
       SPRING.DATA.MONGODB.DATABASE: claimer
       SPRING.DATA.MONGODB.USERNAME: admin
       SPRING.DATA.MONGODB.PASSWORD: 1111
+      SPRING.DATA.MONGODB.AUTHENTICATION-DATABESE: admin
 
   mongodb:
     image: mongo:latest
