@@ -7,6 +7,7 @@ import java.time.Duration
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
+import reactor.core.publisher.Mono
 
 @Component
 class Runner(private val claimer: PenumbraClaimer,
@@ -18,8 +19,8 @@ class Runner(private val claimer: PenumbraClaimer,
     @Scheduled(initialDelay = 0)
     fun run() {
         LOG.info("Started Penumbra job")
+        Mono.just(Unit).delayElement(Duration.ofSeconds(5)).flatMapMany { mongoService.findAll() }
 
-        mongoService.findAll()
             .filter { it.isActive }
 //            .flatMap { claimer.claim(it) }
 //            .delayElements(Duration.ofSeconds(120))
