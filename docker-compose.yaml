@@ -20,7 +20,7 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: tester
+      MONGO_INITDB_ROOT_USERNAME: user
       MONGO_INITDB_ROOT_PASSWORD: 1111
     volumes:
       - ~/claimerMongo:/data/db
