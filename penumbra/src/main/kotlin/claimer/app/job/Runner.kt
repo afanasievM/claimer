@@ -15,7 +15,7 @@ class Runner(private val claimer: PenumbraClaimer,
 ) {
 
 //    @Scheduled(cron = CRON_EXPRESSION)
-    @Scheduled(initialDelay = 5000)
+    @Scheduled(initialDelay = 20000)
     fun run() {
         LOG.info("Started Penumbra job")
 
