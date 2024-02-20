@@ -24,6 +24,6 @@ data class Penumbra(
     @Field("sshCommand")
     var sshCommand: String,
 
-    @Field("isActive")
-    var isActive: Boolean,
-)
+    override var active: Boolean,
+    override var projectName: String,
+) : Project

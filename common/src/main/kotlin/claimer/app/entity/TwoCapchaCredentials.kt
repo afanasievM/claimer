@@ -6,15 +6,11 @@ import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
 import org.springframework.data.mongodb.core.mapping.FieldType
 
-@Document("berachain")
-data class Berachain(
+@Document("twoCapchaCredentials")
+data class TwoCapchaCredentials(
     @Id
     @Field("_id", targetType = FieldType.STRING)
     var id: UUID? = UUID.randomUUID(),
-
-    @Field("wallet")
-    var wallet: String,
-
-    override var active: Boolean,
-    override var projectName: String,
-): Project
+    @Field("apiKey")
+    var apiKey: String,
+)

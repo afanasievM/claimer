@@ -1,10 +1,10 @@
 package claimer.app.dto
 
-data class TurnstileTaskProxylessCreateTaskRequest(val clientKey: String, val task: Task)
+data class TurnstileTaskProxylessCreateTaskRequest(val clientKey: String, val task: TurnstileTask)
 
-data class Task(val type: String, val websiteURL: String, val websiteKey: String)
+data class TurnstileTask(val type: String, val websiteURL: String, val websiteKey: String)
 
-data class TurnstileTaskProxylessCreateTaskResponse(val errorId: Int, val taskId: Long)
+data class TurnstileTaskProxylessCreateTaskResponse(val errorId: Int, val taskId: Long, val errorDescription:String?)
 
 data class TwoCapchGetTaskResultRequest(val clientKey: String, val taskId: Long)
 data class TwoCapchGetTaskResultResponse(

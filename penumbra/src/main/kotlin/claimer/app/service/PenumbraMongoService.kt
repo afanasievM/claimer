@@ -21,4 +21,8 @@ class PenumbraMongoService(private val repository: PenumbraRepository) {
     fun save(penumbra: Penumbra): Mono<Penumbra> {
         return repository.save(penumbra)
     }
+
+    fun findAllActive(): Flux<Penumbra> {
+        return repository.findAllByActiveIsTrue()
+    }
 }

@@ -9,20 +9,19 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
 @Component
-class Runner(private val claimer: PenumbraClaimer,
-             private val sshService: PenumbraSshService,
-             private val mongoService: PenumbraMongoService
+class PenumbraRunner(private val claimer: PenumbraClaimer,
+                     private val sshService: PenumbraSshService,
+                     private val mongoService: PenumbraMongoService
 ) {
 
     @Scheduled(cron = CRON_EXPRESSION)
     fun run() {
         LOG.info("Started Penumbra job")
-
-        mongoService.findAll()
-            .filter { it.isActive }
+        mongoService.findAllActive()
             .flatMap { claimer.claim(it) }
             .delayElements(Duration.ofSeconds(120))
             .flatMap { sshService.runSshCommand(it) }
+            .doOnError { LOG.error("Penumbra job finished with error\n" + it.message) }
             .subscribe { LOG.info("Job successfully finished!") }
     }
 
