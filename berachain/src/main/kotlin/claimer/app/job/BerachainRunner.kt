@@ -25,6 +25,6 @@ class BerachainRunner(
 
     companion object {
         private val LOG = LoggerFactory.getLogger(Companion::class.java)
-        private const val CRON_EXPRESSION = "0 0 1/8 * * *"
+        private const val CRON_EXPRESSION = "0 0 1/9 * * *"
     }
 }
