@@ -7,11 +7,14 @@ import java.time.Duration
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
+import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.onErrorResume
 
 @Component
-class PenumbraRunner(private val claimer: PenumbraClaimer,
-                     private val sshService: PenumbraSshService,
-                     private val mongoService: PenumbraMongoService
+class PenumbraRunner(
+    private val claimer: PenumbraClaimer,
+    private val sshService: PenumbraSshService,
+    private val mongoService: PenumbraMongoService
 ) {
 
     @Scheduled(fixedDelay = HOURS_DELAY_MS, initialDelay = START_UP_DELAY_MS)
@@ -21,8 +24,12 @@ class PenumbraRunner(private val claimer: PenumbraClaimer,
             .flatMap { claimer.claim(it) }
             .delayElements(Duration.ofSeconds(120))
             .flatMap { sshService.runSshCommand(it) }
-            .doOnError { LOG.error("Penumbra job finished with error\n" + it.message) }
-            .subscribe { LOG.info("Job successfully finished!") }
+            .onErrorResume {
+                LOG.error("Penumbra job finished with error\n" + it.message)
+                Mono.just(Unit)
+            }
+            .doOnComplete { LOG.info("Job successfully finished!") }
+            .blockLast()
     }
 
     companion object {

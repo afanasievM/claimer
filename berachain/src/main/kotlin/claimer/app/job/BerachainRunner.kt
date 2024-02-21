@@ -6,6 +6,7 @@ import claimer.app.service.BerachainMongoService
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
+import reactor.core.publisher.Mono
 
 @Component
 class BerachainRunner(
@@ -19,8 +20,13 @@ class BerachainRunner(
 
         mongoService.findAllActive()
             .flatMap { claimService.claim(it) }
-            .doOnError { LOG.error("Berachain job finished with error\n" + it.message) }
-            .subscribe { LOG.info("Job successfully finished!") }
+            .map {}
+            .onErrorResume {
+                LOG.error("Berachain job finished with error\n" + it.message)
+                Mono.just(Unit)
+            }
+            .doOnComplete { LOG.info("Job successfully finished!") }
+            .blockLast()
     }
 
     companion object {
