@@ -14,7 +14,7 @@ class PenumbraRunner(private val claimer: PenumbraClaimer,
                      private val mongoService: PenumbraMongoService
 ) {
 
-    @Scheduled(cron = CRON_EXPRESSION)
+    @Scheduled(fixedDelay = HOURS_DELAY_MS, initialDelay = START_UP_DELAY_MS)
     fun run() {
         LOG.info("Started Penumbra job")
         mongoService.findAllActive()
@@ -27,6 +27,7 @@ class PenumbraRunner(private val claimer: PenumbraClaimer,
 
     companion object {
         private val LOG = LoggerFactory.getLogger(Companion::class.java)
-        private const val CRON_EXPRESSION = "0 0 21 * * *"
+        private const val HOURS_DELAY_MS = 1000 * 60 * 60 * 24L
+        private const val START_UP_DELAY_MS = 6000L
     }
 }

@@ -13,7 +13,7 @@ class BerachainRunner(
     private val claimService: BerachainClaimService
 ) {
 
-    @Scheduled(cron = CRON_EXPRESSION)
+    @Scheduled(fixedDelay = HOURS_DELAY_MS, initialDelay = START_UP_DELAY_MS)
     fun run() {
         LOG.info("Started Berachain job")
 
@@ -25,6 +25,7 @@ class BerachainRunner(
 
     companion object {
         private val LOG = LoggerFactory.getLogger(Companion::class.java)
-        private const val CRON_EXPRESSION = "0 0 1/9 * * *"
+        private const val HOURS_DELAY_MS = 1000 * 60 * 60 * 8L
+        private const val START_UP_DELAY_MS = 5000L
     }
 }
