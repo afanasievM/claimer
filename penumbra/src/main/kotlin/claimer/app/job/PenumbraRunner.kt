@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.onErrorResume
 
 @Component
 class PenumbraRunner(
@@ -17,7 +16,7 @@ class PenumbraRunner(
     private val mongoService: PenumbraMongoService
 ) {
 
-    @Scheduled(fixedDelay = HOURS_DELAY_MS, initialDelay = START_UP_DELAY_MS)
+    @Scheduled(cron = CRON_EXPRESSION)
     fun run() {
         LOG.info("Started Penumbra job")
         mongoService.findAllActive()
@@ -34,7 +33,6 @@ class PenumbraRunner(
 
     companion object {
         private val LOG = LoggerFactory.getLogger(Companion::class.java)
-        private const val HOURS_DELAY_MS = 1000 * 60 * 60 * 24L
-        private const val START_UP_DELAY_MS = 6000L
+        private const val CRON_EXPRESSION = "0 0 21 * * *"
     }
 }

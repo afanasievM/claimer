@@ -2,6 +2,7 @@ package claimer.app.job
 
 import claimer.app.service.BerachainClaimService
 import claimer.app.service.BerachainMongoService
+import java.time.LocalDateTime
 
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
@@ -25,7 +26,14 @@ class BerachainRunner(
                 LOG.error("Berachain job finished with error\n" + it.message)
                 Mono.just(Unit)
             }
-            .doOnComplete { LOG.info("Job successfully finished!") }
+            .doOnComplete {
+                LOG.info("Job successfully finished!")
+                LOG.info(
+                    "Next execution of Berachain job at: ${
+                        LocalDateTime.now().plusSeconds(HOURS_DELAY_MS / 1000)
+                    }"
+                )
+            }
             .blockLast()
     }
 
