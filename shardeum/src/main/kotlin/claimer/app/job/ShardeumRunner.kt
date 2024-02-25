@@ -21,7 +21,7 @@ class ShardeumRunner(
         mongoService.findAllActive()
             .flatMap { claimer.claim(it) }
             .onErrorResume {
-                LOG.error("Penumbra job finished with error\n" + it.message)
+                LOG.error("Shardeum job finished with error\n" + it.message)
                 Mono.just(Unit)
             }
             .doOnComplete { LOG.info("Job successfully finished!") }
