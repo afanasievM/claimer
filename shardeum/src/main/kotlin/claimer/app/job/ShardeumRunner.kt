@@ -22,6 +22,7 @@ class ShardeumRunner(
             .flatMap { claimer.claim(it) }
             .onErrorResume {
                 LOG.error("Shardeum job finished with error\n" + it.message)
+                LOG.error(it.stackTraceToString())
                 Mono.just(Unit)
             }
             .doOnComplete { LOG.info("Job successfully finished!") }
