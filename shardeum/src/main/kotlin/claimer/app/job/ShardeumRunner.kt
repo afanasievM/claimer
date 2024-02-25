@@ -1,8 +1,7 @@
 package claimer.app.job
 
-import claimer.app.service.PenumbraClaimer
-import claimer.app.service.PenumbraMongoService
-import claimer.app.service.PenumbraSshService
+import claimer.app.service.ShardeumClaimer
+import claimer.app.service.ShardeumMongoService
 import java.time.Duration
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
@@ -10,19 +9,17 @@ import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
 
 @Component
-class PenumbraRunner(
-    private val claimer: PenumbraClaimer,
-    private val sshService: PenumbraSshService,
-    private val mongoService: PenumbraMongoService
+class ShardeumRunner(
+    private val claimer: ShardeumClaimer,
+    private val mongoService: ShardeumMongoService
 ) {
 
-//    @Scheduled(cron = CRON_EXPRESSION)
+    //    @Scheduled(cron = CRON_EXPRESSION)
+    @Scheduled(fixedDelay = 1000 * 60 * 60, initialDelay = 5000)
     fun run() {
-        LOG.info("Started Penumbra job")
+        LOG.info("Started Shardeum job")
         mongoService.findAllActive()
             .flatMap { claimer.claim(it) }
-            .delayElements(Duration.ofSeconds(120))
-            .flatMap { sshService.runSshCommand(it) }
             .onErrorResume {
                 LOG.error("Penumbra job finished with error\n" + it.message)
                 Mono.just(Unit)

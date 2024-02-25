@@ -13,6 +13,8 @@ services:
       SPRING.DATA.MONGODB.USERNAME: user
       SPRING.DATA.MONGODB.PASSWORD: 1111
       spring.data.mongodb.authentication-database: admin
+    volumes:
+      - ~/telegramDb:/data/telegramDb
 
   mongodb:
     image: mongo:latest
@@ -24,6 +26,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 1111
     volumes:
       - ~/claimerMongo:/data/db
+
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
