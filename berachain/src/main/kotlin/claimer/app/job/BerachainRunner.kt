@@ -15,7 +15,7 @@ class BerachainRunner(
     private val claimService: BerachainClaimService
 ) {
 
-//    @Scheduled(fixedDelay = HOURS_DELAY_MS, initialDelay = START_UP_DELAY_MS)
+    @Scheduled(fixedDelay = HOURS_DELAY_MS, initialDelay = START_UP_DELAY_MS)
     fun run() {
         LOG.info("Started Berachain job")
 
