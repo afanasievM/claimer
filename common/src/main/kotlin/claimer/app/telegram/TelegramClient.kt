@@ -1,7 +1,6 @@
 package claimer.app.telegram
 
 import claimer.app.entity.TelegramSettings
-import com.sun.org.slf4j.internal.LoggerFactory
 import it.tdlight.ClientFactory
 import it.tdlight.Init
 import it.tdlight.Log
