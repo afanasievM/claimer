@@ -1,10 +1,13 @@
 package claimer.app.telegram
 
 import claimer.app.entity.TelegramSettings
+import com.sun.org.slf4j.internal.LoggerFactory
+import it.tdlight.ClientFactory
 import it.tdlight.Init
+import it.tdlight.Log
+import it.tdlight.Slf4JLogMessageHandler
 import it.tdlight.client.APIToken
 import it.tdlight.client.AuthenticationSupplier
-import it.tdlight.client.Result
 import it.tdlight.client.SimpleTelegramClient
 import it.tdlight.client.SimpleTelegramClientBuilder
 import it.tdlight.client.SimpleTelegramClientFactory
@@ -17,9 +20,7 @@ import it.tdlight.jni.TdApi.AuthorizationStateReady
 import it.tdlight.jni.TdApi.InputMessageText
 import it.tdlight.jni.TdApi.SendMessage
 import it.tdlight.jni.TdApi.UpdateAuthorizationState
-import jakarta.annotation.PostConstruct
 import java.nio.file.Paths
-import okhttp3.internal.wait
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
@@ -27,17 +28,28 @@ import reactor.core.publisher.Mono
 
 @Service
 class TelegramClient(private val telegramSettings: TelegramSettings) {
+    private lateinit var clientFactory:SimpleTelegramClientFactory
+    init {
+        Log.setLogMessageHandler(2, Slf4JLogMessageHandler())
+        clientFactory = SimpleTelegramClientFactory(ClientFactory.create())
+    }
 
+    //    /data/telegramDb
     fun sendMessageToChat(message: String, chatId: Long): Mono<Unit> {
-        println("tg")
-        Init.init()
-        SimpleTelegramClientFactory().use { clientFactory ->
-            val client = buildClient(clientFactory)
-            Thread.sleep(1000 * 10)
-            client.sendMessage(buildMessage(message, chatId), true)
-            client.sendClose()
-            client.closeAndWait()
-        }
+//        println("tg")
+//        Init.init()
+        val client = buildClient(clientFactory)
+//        TdApi.Close()
+        Thread.sleep(5 * 1000)
+        val mes = client.sendMessage(buildMessage(message, chatId), true)
+        mes.get()
+        client.sendClose()
+//        client.close()
+//        client.sendClose()
+        println("CLOSSSSSSSSss")
+//        clientFactory.close()
+//        println("CLOS2")
+//        TdApi.Close()
         return Mono.just(Unit)
     }
 
@@ -45,7 +57,9 @@ class TelegramClient(private val telegramSettings: TelegramSettings) {
         val props = telegramSettings.clientSettings
         val apiToken = APIToken(props.apiId.toInt(), props.apiHash)
         val settings = TDLibSettings.create(apiToken)
+
         val sessionPath = Paths.get(props.sessionPath)
+//        val sessionPath = Paths.get("example-tdlight-session")
         settings.databaseDirectoryPath = sessionPath.resolve(props.databaseDirectory)
         val clientBuilder = clientFactory.builder(settings)
         val authenticationData = AuthenticationSupplier.user(props.phone)

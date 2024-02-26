@@ -16,7 +16,7 @@ class PenumbraRunner(
     private val mongoService: PenumbraMongoService
 ) {
 
-    @Scheduled(cron = CRON_EXPRESSION)
+//    @Scheduled(cron = CRON_EXPRESSION)
     fun run() {
         LOG.info("Started Penumbra job")
         mongoService.findAllActive()
