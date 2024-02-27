@@ -1,4 +1,4 @@
-FROM gradle:jdk21 as gradleimage
+FROM --platform=linux/amd64 gradle:jdk21 as gradleimage
 COPY . /home/gradle/source
 WORKDIR /home/gradle/source
 RUN ./gradlew build -x test
