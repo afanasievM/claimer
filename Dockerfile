@@ -7,5 +7,6 @@ FROM --platform=linux/amd64 amazoncorretto:21
 ARG JAR_FILE=*.jar
 COPY --from=gradleimage /home/gradle/source/app/build/libs/app.jar app.jar
 COPY --from=gradleimage /tmp /tmp
+RUN ls
 RUN ls /tmp
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
