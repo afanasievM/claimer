@@ -2,10 +2,7 @@ FROM --platform=linux/amd64 gradle:jdk21 as gradleimage
 COPY . /home/gradle/source
 WORKDIR /home/gradle/source
 RUN ./gradlew build -x test
-RUN ls /home/gradle
-RUN ls /home/gradle/source
-RUN ls /usr
-RUN find . -print
+RUN jar -tf /home/gradle/source/app/build/libs/app.jar
 
 FROM --platform=linux/amd64 amazoncorretto:21
 ARG JAR_FILE=*.jar
