@@ -2,7 +2,6 @@ package claimer.app.telegram
 
 import claimer.app.entity.TelegramSettings
 import it.tdlight.ClientFactory
-import it.tdlight.Init
 import it.tdlight.Log
 import it.tdlight.Slf4JLogMessageHandler
 import it.tdlight.client.APIToken
@@ -19,6 +18,8 @@ import it.tdlight.jni.TdApi.AuthorizationStateReady
 import it.tdlight.jni.TdApi.InputMessageText
 import it.tdlight.jni.TdApi.SendMessage
 import it.tdlight.jni.TdApi.UpdateAuthorizationState
+import it.tdlight.util.NativeLibraryLoader
+import java.lang.reflect.Method
 import java.nio.file.Paths
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -27,7 +28,8 @@ import reactor.core.publisher.Mono
 
 @Service
 class TelegramClient(private val telegramSettings: TelegramSettings) {
-    private lateinit var clientFactory:SimpleTelegramClientFactory
+    private lateinit var clientFactory: SimpleTelegramClientFactory
+
     init {
         Log.setLogMessageHandler(2, Slf4JLogMessageHandler())
         clientFactory = SimpleTelegramClientFactory(ClientFactory.create())
