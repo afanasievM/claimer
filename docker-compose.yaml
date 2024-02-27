@@ -1,7 +1,10 @@
 version: '3.8'
 services:
   app:
-    image: myafo/claimer:main
+    image: 'claimer'
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
     restart: unless-stopped
     container_name: 'app'
     depends_on:
