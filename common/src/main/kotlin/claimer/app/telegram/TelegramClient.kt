@@ -2,6 +2,7 @@ package claimer.app.telegram
 
 import claimer.app.entity.TelegramSettings
 import it.tdlight.ClientFactory
+import it.tdlight.Init
 import it.tdlight.Log
 import it.tdlight.Slf4JLogMessageHandler
 import it.tdlight.client.APIToken
@@ -31,6 +32,7 @@ class TelegramClient(private val telegramSettings: TelegramSettings) {
     private lateinit var clientFactory: SimpleTelegramClientFactory
 
     init {
+        Init.init()
         Log.setLogMessageHandler(2, Slf4JLogMessageHandler())
         clientFactory = SimpleTelegramClientFactory(ClientFactory.create())
     }
