@@ -14,8 +14,7 @@ class ShardeumRunner(
     private val mongoService: ShardeumMongoService
 ) {
 
-//        @Scheduled(cron = CRON_EXPRESSION)
-//    @Scheduled(fixedDelay = 1000 * 20, initialDelay = 5000)
+    @Scheduled(cron = CRON_EXPRESSION)
     fun run() {
         LOG.info("Started Shardeum job")
         mongoService.findAllActive()
@@ -31,6 +30,6 @@ class ShardeumRunner(
 
     companion object {
         private val LOG = LoggerFactory.getLogger(Companion::class.java)
-        private const val CRON_EXPRESSION = "0 0 21 * * *"
+        private const val CRON_EXPRESSION = "0 0 20 * * *"
     }
 }
