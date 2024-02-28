@@ -75,10 +75,13 @@ class TelegramClient(private val telegramSettings: TelegramSettings) {
     private fun onUpdateAuthorizationState(update: UpdateAuthorizationState) {
         val authorizationState = update.authorizationState
         var state = ""
-        if (authorizationState is AuthorizationStateReady) state = "Logged in"
-        else if (authorizationState is AuthorizationStateClosing) state = "Closing..."
-        else if (authorizationState is AuthorizationStateClosed) state = "Closed"
-        else if (authorizationState is AuthorizationStateLoggingOut) state = "Logging out..."
+        when (authorizationState) {
+            is AuthorizationStateReady -> state = "Logged in"
+            is AuthorizationStateClosing -> state = "Closing..."
+            is AuthorizationStateClosed -> state = "Closed"
+            is AuthorizationStateLoggingOut -> state = "Logging out..."
+            else -> state = authorizationState.toString()
+        }
         println(state)
     }
 
