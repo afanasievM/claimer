@@ -15,7 +15,7 @@ class ShardeumRunner(
 ) {
 
 //        @Scheduled(cron = CRON_EXPRESSION)
-    @Scheduled(fixedDelay = 1000 * 20, initialDelay = 5000)
+//    @Scheduled(fixedDelay = 1000 * 20, initialDelay = 5000)
     fun run() {
         LOG.info("Started Shardeum job")
         mongoService.findAllActive()
