@@ -13,10 +13,9 @@ services:
       SPRING.DATA.MONGODB.USERNAME: user
       SPRING.DATA.MONGODB.PASSWORD: 1111
       spring.data.mongodb.authentication-database: admin
+      TZ: Europe/Kyiv
     volumes:
       - ~/telegramDb:/data/telegramDb
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
 
   mongodb:
     image: mongo:latest
@@ -26,17 +25,16 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: user
       MONGO_INITDB_ROOT_PASSWORD: 1111
+      TZ: Europe/Kyiv
     volumes:
       - ~/claimerMongo:/data/db
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
 
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
     command: --interval 30
+    environment:
+      TZ: Europe/Kyiv
     restart: unless-stopped
