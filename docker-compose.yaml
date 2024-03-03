@@ -16,6 +16,7 @@ services:
     volumes:
       - ~/telegramDb:/data/telegramDb
       - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 
   mongodb:
     image: mongo:latest
@@ -28,6 +29,7 @@ services:
     volumes:
       - ~/claimerMongo:/data/db
       - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 
   watchtower:
     image: containrrr/watchtower
@@ -35,5 +37,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     command: --interval 30
     restart: unless-stopped
