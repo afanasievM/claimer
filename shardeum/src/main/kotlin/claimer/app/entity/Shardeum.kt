@@ -9,8 +9,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType
 @Document("shardeum")
 data class Shardeum(
     @Id
-    @Field("_id", targetType = FieldType.STRING)
-    var id: UUID? = UUID.randomUUID(),
+    override var id: UUID? = UUID.randomUUID(),
 
     @Field("wallet")
     var wallet: String,

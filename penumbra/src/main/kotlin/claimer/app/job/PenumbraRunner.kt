@@ -19,7 +19,7 @@ class PenumbraRunner(
     @Scheduled(cron = CRON_EXPRESSION)
     fun run() {
         LOG.info("Started Penumbra job")
-        mongoService.findAllActive()
+        mongoService.findAllEnabled()
             .flatMap { claimer.claim(it) }
             .delayElements(Duration.ofSeconds(120))
             .flatMap { sshService.runSshCommand(it) }

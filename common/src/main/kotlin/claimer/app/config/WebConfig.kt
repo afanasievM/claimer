@@ -39,7 +39,7 @@ class WebConfig {
     }
 
     @Bean
-    fun telegramSettings(service: TelegramMongoService):TelegramSettings{
+    fun telegramSettings(service: TelegramMongoService): TelegramSettings {
         return service.findSettings().block()
     }
 

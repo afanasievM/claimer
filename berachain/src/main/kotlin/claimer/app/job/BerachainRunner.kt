@@ -19,7 +19,7 @@ class BerachainRunner(
     fun run() {
         LOG.info("Started Berachain job")
 
-        mongoService.findAllActive()
+        mongoService.findAllEnabled()
             .flatMap { claimService.claim(it) }
             .map {}
             .onErrorResume {

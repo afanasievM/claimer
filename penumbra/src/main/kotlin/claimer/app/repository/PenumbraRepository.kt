@@ -10,5 +10,8 @@ interface PenumbraRepository : ReactiveCrudRepository<Penumbra, UUID> {
     override fun findById(id: UUID): Mono<Penumbra>
     override fun findAll(): Flux<Penumbra>
     fun findAllByActiveIsTrue(): Flux<Penumbra>
+    fun findAllByActiveIsFalse(): Flux<Penumbra>
     fun save(penumbra: Penumbra): Mono<Penumbra>
+    fun findByProjectName(name: String): Mono<Penumbra>
+
 }

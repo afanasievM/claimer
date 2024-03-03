@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 
-@Service
+//@Service
 class ShardeumClaimer(private val telegramClient: TelegramClient) {
 
     fun claim(shardeum: Shardeum): Mono<Unit> {

@@ -13,7 +13,8 @@ kordVer = "0.13.1"
 maverickSynergyVer = "3.0.11"
 twoCapchaVer = "1.1.1"
 kotlinJacksonVer = "2.16.1"
-tdLightVer= "3.3.1+td.1.8.25"
+tdLightVer = "3.3.1+td.1.8.25"
+telegramBotVer = "6.1.0"
 
 [libraries]
 # kotlin
@@ -60,5 +61,6 @@ maverickSynergyLib = { module = "com.sshtools:maverick-synergy-client", version.
 twoCapchaLib = { module = "com.github.2captcha:2captcha-java", version.ref = "twoCapchaVer" }
 # Telegramm
 tdLightLib = { module = "it.tdlight:tdlight-java-bom", version.ref = "tdLightVer" }
+telegramBotLib = { module = "com.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram", version.ref = "telegramBotVer" }
 
 [plugins]

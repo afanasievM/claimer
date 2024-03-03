@@ -10,5 +10,8 @@ interface BerachainRepository : ReactiveCrudRepository<Berachain, UUID> {
     override fun findById(id: UUID): Mono<Berachain>
     override fun findAll(): Flux<Berachain>
     fun findAllByActiveIsTrue(): Flux<Berachain>
+    fun findAllByActiveIsFalse(): Flux<Berachain>
     fun save(berachain: Berachain): Mono<Berachain>
+    fun findByProjectName(name: String): Mono<Berachain>
+
 }

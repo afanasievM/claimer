@@ -8,4 +8,4 @@ plugins {
 }
 
 rootProject.name = "claimer"
-include("app", "penumbra", "common", "berachain", "shardeum")
+include("app", "penumbra", "common", "berachain", "shardeum", "crud")

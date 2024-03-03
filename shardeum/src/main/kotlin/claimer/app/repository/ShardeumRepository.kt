@@ -10,5 +10,7 @@ interface ShardeumRepository : ReactiveCrudRepository<Shardeum, UUID> {
     override fun findById(id: UUID): Mono<Shardeum>
     override fun findAll(): Flux<Shardeum>
     fun findAllByActiveIsTrue(): Flux<Shardeum>
+    fun findAllByActiveIsFalse(): Flux<Shardeum>
     fun save(penumbra: Shardeum): Mono<Shardeum>
+    fun findByProjectName(name: String): Mono<Shardeum>
 }

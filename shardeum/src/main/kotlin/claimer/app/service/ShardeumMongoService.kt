@@ -1,5 +1,6 @@
 package claimer.app.service
 
+import claimer.app.entity.Project
 import claimer.app.entity.Shardeum
 import claimer.app.repository.ShardeumRepository
 import java.util.UUID
@@ -8,21 +9,33 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
-class ShardeumMongoService(private val repository: ShardeumRepository) {
+class ShardeumMongoService(private val repository: ShardeumRepository): ProjectService<Shardeum> {
 
-    fun findById(id: UUID): Mono<Shardeum> {
+    override fun findById(id: UUID): Mono<Shardeum> {
         return repository.findById(id)
     }
 
-    fun findAll(): Flux<Shardeum> {
+    override fun findAll(): Flux<Shardeum> {
         return repository.findAll()
     }
 
-    fun save(penumbra: Shardeum): Mono<Shardeum> {
-        return repository.save(penumbra)
+    override fun save(project: Project): Mono<Shardeum> {
+        return save(project as Shardeum)
     }
 
-    fun findAllActive(): Flux<Shardeum> {
+    override fun save(project: Shardeum): Mono<Shardeum> {
+        return repository.save(project)
+    }
+
+    override fun findAllEnabled(): Flux<Shardeum> {
         return repository.findAllByActiveIsTrue()
+    }
+
+    override fun findAllDisabled(): Flux<Shardeum> {
+        return repository.findAllByActiveIsFalse()
+    }
+
+    override fun findByName(name: String): Mono<Shardeum> {
+        return repository.findByProjectName(name)
     }
 }

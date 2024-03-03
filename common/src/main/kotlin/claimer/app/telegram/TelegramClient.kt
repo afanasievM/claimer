@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 
-@Service
+//@Service
 class TelegramClient(private val telegramSettings: TelegramSettings) {
     private lateinit var clientFactory: SimpleTelegramClientFactory
     private lateinit var client: SimpleTelegramClient
