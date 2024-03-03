@@ -1,7 +1,6 @@
 package claimer.app.service
 
 import claimer.app.entity.Penumbra
-import claimer.app.entity.Project
 import claimer.app.repository.PenumbraRepository
 import java.util.UUID
 import org.springframework.stereotype.Service
@@ -17,10 +16,6 @@ class PenumbraMongoService(private val repository: PenumbraRepository) : Project
 
     override fun findAll(): Flux<Penumbra> {
         return repository.findAll()
-    }
-
-    override fun save(project: Project): Mono<Penumbra> {
-        return save(project as Penumbra)
     }
 
     override fun save(project: Penumbra): Mono<Penumbra> {

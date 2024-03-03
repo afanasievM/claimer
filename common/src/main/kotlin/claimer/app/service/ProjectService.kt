@@ -11,7 +11,9 @@ interface ProjectService<T> {
     fun findAll(): Flux<T>
 
     fun save(project: T): Mono<T>
-    fun save(project: Project): Mono<T>
+    fun save(project: Project): Mono<T> {
+        return save(project as T)
+    }
 
     fun findAllEnabled(): Flux<T>
 

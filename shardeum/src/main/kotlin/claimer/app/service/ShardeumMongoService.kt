@@ -1,6 +1,5 @@
 package claimer.app.service
 
-import claimer.app.entity.Project
 import claimer.app.entity.Shardeum
 import claimer.app.repository.ShardeumRepository
 import java.util.UUID
@@ -17,10 +16,6 @@ class ShardeumMongoService(private val repository: ShardeumRepository): ProjectS
 
     override fun findAll(): Flux<Shardeum> {
         return repository.findAll()
-    }
-
-    override fun save(project: Project): Mono<Shardeum> {
-        return save(project as Shardeum)
     }
 
     override fun save(project: Shardeum): Mono<Shardeum> {

@@ -1,7 +1,6 @@
 package claimer.app.service
 
 import claimer.app.entity.Berachain
-import claimer.app.entity.Project
 import claimer.app.repository.BerachainRepository
 import java.util.UUID
 import org.springframework.stereotype.Service
@@ -17,10 +16,6 @@ class BerachainMongoService(private val repository: BerachainRepository) : Proje
 
     override fun findAll(): Flux<Berachain> {
         return repository.findAll()
-    }
-
-    override fun save(project: Project): Mono<Berachain> {
-        return save(project as Berachain)
     }
 
     override fun save(project: Berachain): Mono<Berachain> {
