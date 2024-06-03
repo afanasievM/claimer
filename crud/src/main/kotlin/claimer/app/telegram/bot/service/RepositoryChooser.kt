@@ -1,6 +1,7 @@
 package claimer.app.telegram.bot.service
 
 import claimer.app.entity.Berachain
+import claimer.app.entity.Olive
 import claimer.app.entity.Penumbra
 import claimer.app.entity.Project
 import claimer.app.entity.Shardeum
@@ -13,12 +14,14 @@ import org.springframework.stereotype.Service
 class RepositoryChooser(
     private final val penumbraService: ProjectService<Penumbra>,
     private final val shardeumService: ProjectService<Shardeum>,
-    private final val berachainService: ProjectService<Berachain>
+    private final val berachainService: ProjectService<Berachain>,
+    private final val oliveService: ProjectService<Olive>,
 ) {
     private val repositoryMap = mapOf(
         Penumbra::class.java to penumbraService,
         Shardeum::class.java to shardeumService,
-        Berachain::class.java to berachainService
+        Berachain::class.java to berachainService,
+        Olive::class.java to oliveService,
     )
 
     fun choose(project: Project): ProjectService<out Project> {

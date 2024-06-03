@@ -9,6 +9,7 @@ dependencies {
     implementation(project(":penumbra"))
     implementation(project(":shardeum"))
     implementation(project(":berachain"))
+    implementation(project(":olive"))
     implementation(project(":common"))
     implementation(libs.telegramBotLib)
 }
