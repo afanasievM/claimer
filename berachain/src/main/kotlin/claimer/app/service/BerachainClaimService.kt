@@ -38,8 +38,8 @@ class BerachainClaimService(private val capchaService: CapchaService, private va
         .bodyToMono<String>()
 
     companion object {
-        private const val CLAIMING_URL = "https://artio-80085-faucet-api-cf.berachain.com/api/claim"
-        private const val CAPCHA_URL = "https://artio.faucet.berachain.com/"
+        private const val CLAIMING_URL = "https://bartio-faucet.berachain-devnet.com/api/claim"
+        private const val CAPCHA_URL = "https://bartio.faucet.berachain.com/"
         private const val SITE_KEY = "0x4AAAAAAARdAuciFArKhVwt"
 
     }
